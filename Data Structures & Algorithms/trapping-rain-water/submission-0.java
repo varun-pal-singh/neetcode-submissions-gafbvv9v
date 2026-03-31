@@ -1,0 +1,21 @@
+class Solution {
+    public int trap(int[] height) {
+        int maxWater = 0, water = 0;
+        int l = 0, r = height.length - 1;
+        int leftMax = height[l], rightMax = height[r];
+
+        while (l < r){
+            if (leftMax < rightMax){
+                l += 1;
+                leftMax = Math.max(leftMax, height[l]);
+                water = leftMax - height[l];
+            } else {
+                r -= 1;
+                rightMax = Math.max(rightMax, height[r]);
+                water = rightMax - height[r];
+            }
+            maxWater += water;
+        }
+        return maxWater;
+    }
+}
